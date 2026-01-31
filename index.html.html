@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Valentine?</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+body {
+  background: linear-gradient(#ffdde7, #ffe6f0);
+  font-family: Arial, sans-serif;
+  text-align: center;
+  padding: 20px;
+  overflow: hidden;
+}
+
+img {
+  width: 90%;
+  max-width: 320px;
+  border-radius: 20px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+}
+
+h1 {
+  color: #ff2e63;
+  margin: 20px 0;
+}
+
+button {
+  font-size: 20px;
+  padding: 12px 25px;
+  border-radius: 12px;
+  border: none;
+  margin: 15px;
+}
+
+#yes {
+  background: #ff2e63;
+  color: white;
+}
+
+#no {
+  background: gray;
+  color: white;
+  position: absolute;
+}
+
+.confetti {
+  position: fixed;
+  top: -10px;
+  font-size: 25px;
+  animation: fall linear forwards;
+}
+
+@keyframes fall {
+  to { transform: translateY(100vh); }
+}
+</style>
+</head>
+
+<body>
+
+<img src="photo.jpg">
+<h1>Khushu, will you be my Valentine? 💖</h1>
+
+<button id="yes" onclick="yesClicked()">YES 💘</button>
+<button id="no" onmouseover="moveNo()">NO 😒</button>
+
+<script>
+let noCount = 0;
+
+function moveNo() {
+  const no = document.getElementById("no");
+  const x = Math.random() * (window.innerWidth - 100);
+  const y = Math.random() * (window.innerHeight - 100);
+  no.style.left = x + "px";
+  no.style.top = y + "px";
+
+  noCount++;
+
+  if (noCount === 2) alert("Are you sure?? 😳");
+  if (noCount === 4) alert("System Error 💔");
+  if (noCount === 6) alert("ERROR 404: Valentine Not Found 😭");
+}
+
+function yesClicked() {
+  document.body.innerHTML = "<h1>YAYYYYY 💕<br>I love you Khushu 😘</h1>";
+  startConfetti();
+}
+
+function startConfetti() {
+  for (let i = 0; i < 80; i++) {
+    const confetti = document.createElement("div");
+    confetti.classList.add("confetti");
+    confetti.innerText = "💖";
+    confetti.style.left = Math.random() * window.innerWidth + "px";
+    confetti.style.animationDuration = (Math.random() * 3 + 2) + "s";
+    document.body.appendChild(confetti);
+  }
+}
+</script>
+
+</body>
+</html>
